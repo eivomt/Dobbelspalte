@@ -24,7 +24,7 @@ function setup() {
   // speed = 10
   maxRadius = new createVector(windowWidth/2, slitCenterY2)
 
-  frequency = 30
+  frequency = 50
   L = 500
 
   background(225)
@@ -38,13 +38,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(225)
 
+  stroke(255)
+  drawMaxima(4)
+  stroke(125)
   createGrid()
-  drawMaxima(30)
+  stroke(50)
+  drawBarrier()
 }
 
 function draw() {
-  stroke(50)
-  drawBarrier()
 }
 
 function drawBarrier() {
@@ -56,7 +58,7 @@ function drawBarrier() {
 }
 
 function drawMaxima(n) {
-  for(let i=n*-1; i<n;i++) {
+  for(let i=0; i<=n;i++) {
     line(CenterX, slitCenterY1,CenterX + L, (i*L*(frequency +2))/slitDistance)
     line(CenterX, slitCenterY2,CenterX + L, (i*L*(frequency +2))/slitDistance)
   }
