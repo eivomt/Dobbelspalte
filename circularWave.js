@@ -8,7 +8,7 @@ class circularWave {
   
     show() {
       noFill()
-      strokeWeight(15)
+      strokeWeight(2)
       // noStroke()
       stroke(mapNumRange(this.width,0, 1380,80,225))
       circle(this.x,this.y1, this.width)
