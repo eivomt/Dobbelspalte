@@ -14,7 +14,18 @@ function setup() {
   
   createCanvas(windowWidth, windowHeight);
   background(225)
+<<<<<<< Updated upstream
   fill(0)
+=======
+
+  stroke(255)
+  drawMaxima(4)
+  stroke(125)
+  createGrid()
+  stroke(50)
+  drawBarrier()
+  scale(-1,1)
+>>>>>>> Stashed changes
 }
 
 function draw() {
