@@ -1,5 +1,7 @@
 
-let CenterX, CenterY
+let Offset
+let containerX1, containerWidth, containerY1, containerHeight
+let circles = []
 // let allLines = []
 // let allCircles = []
 
@@ -8,29 +10,41 @@ let CenterX, CenterY
 
 
 function setup() {
-  frameRate = 34
-  CenterX = windowWidth / 2
-  CenterY = windowHeight /2
   
   createCanvas(windowWidth, windowHeight);
   background(225)
-<<<<<<< Updated upstream
-  fill(0)
-=======
 
-  stroke(255)
-  drawMaxima(4)
-  stroke(125)
-  createGrid()
-  stroke(50)
-  drawBarrier()
-  scale(-1,1)
->>>>>>> Stashed changes
+  Offset = 200
+  ContainerX1 = Offset
+  ContainerY1 = Offset
+  containerWidth = windowWidth-(Offset *2)
+  containerHeight = windowHeight-(Offset *2)
+  // stroke(255)
+  // drawMaxima(4)
+  // stroke(125)
+  // createGrid()
+  // stroke(50)
+  // drawBarrier()
+  // scale(-1,1)
+  noStroke()
+  rect(Offset,Offset, containerWidth, containerHeight)
 }
 
 function draw() {
-  stroke(125)
-  strokeWeight(8)
+  stroke(25)
+  strokeWeight(2)
+  noFill()
+  drawMeasurement()
+}
+
+function drawMeasurement() {
+  let diameter = 20
+  let randomX = Math.random() * (windowWidth - 2*Offset) + Offset
+  let randomY = Math.random() * (windowHeight -2*Offset) + Offset
+
+  circle(randomX,randomY, diameter)
+  // let circle = circle(randomX,randomY, diameter)
+  // circles.push(circle)
 }
   
   
