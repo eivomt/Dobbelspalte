@@ -12,6 +12,30 @@ let frequency
 
 let L
 
+let lambdaSlider = document.getElementById('lambda')
+let lOutput = document.getElementById('lambdaText')
+lOutput.innerHTML = lambdaSlider.value
+
+lambdaSlider.oninput = function() {
+  lOutput.innerHTML = lambdaSlider.value
+  frequency = lambdaSlider.value
+  doTheThing()
+}
+
+let dSlider = document.getElementById('d')
+let dOutput = document.getElementById('dText')
+dOutput.innerHTML = dSlider.value
+
+dSlider.onmouseup = function() {
+  dOutput.innerHTML = dSlider.value
+  slitDistance = dSlider.value
+  barrierHeight = (windowHeight - (slitDistance + slitHeight))/2
+  slitCenterY1 = barrierHeight + slitHeight/2
+  slitCenterY2 = slitCenterY1 + slitDistance
+  // maxRadius.set(windowWidth/2, slitCenterY2)
+  doTheThing()
+}
+
 function setup() {
   frameRate = 34
   CenterX = windowWidth / 2
@@ -27,31 +51,34 @@ function setup() {
   frequency = 50
   L = 500
 
-  background(225)
   stroke(125)
   strokeWeight(2)
-  
-  
-
-
 
   createCanvas(windowWidth, windowHeight);
-  background(225)
+  background(25)
 
   stroke(255)
-  drawMaxima(4)
+  // drawMaxima(4)
   stroke(125)
   createGrid()
   stroke(50)
   drawBarrier()
+
 }
 
 function draw() {
 }
 
+function doTheThing() {
+  background(25)
+  createGrid()
+  drawBarrier()
+}
+
 function drawBarrier() {
   // create barrier with slits
   strokeWeight(16)
+  stroke(225)
   line(CenterX,0,CenterX, barrierHeight)
   line(CenterX,windowHeight,CenterX, barrierHeight + slitHeight + slitDistance)
   line(CenterX, barrierHeight + slitHeight,CenterX, windowHeight - (barrierHeight + slitHeight))
@@ -71,7 +98,7 @@ function drawMaxima(n) {
 // }
 
 function createGrid() {
-  for (let i = 0; i < maxRadius.mag(); i++) {
+  for (let i = 0; i < (maxRadius.mag() / frequency); i++) {
     let cWave = new circularWave(windowWidth/2, slitCenterY1, slitCenterY2, i*frequency*2)
     cWave.show()
   }

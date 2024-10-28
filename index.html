@@ -11,10 +11,19 @@
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
   </head>
-
+  
   <body>
-    <script src="sketch.js"></script>
-    <script src="lineWave.js"></script>
-    <script src="circularWave.js"></script>
+    <div class="box">
+      <input type="range" min="1" max="40" id="lambda" class="slider">
+      <p>Lambda: <span id="lambdaText"></span></p>
+    </div>
+    <div class="box">
+      <input type="range" min="80" max="120" id="d" class="slider">
+      <p>d: <span id="dText"></span></p>
+    </div>
   </body>
+
+  <script src="sketch.js"></script>
+  <script src="lineWave.js"></script>
+  <script src="circularWave.js"></script>
 </html>
