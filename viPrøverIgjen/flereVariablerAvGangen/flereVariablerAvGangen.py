@@ -308,7 +308,6 @@ for waveLength in lambdaArray:
                 iterator += 1
                 # funksjon(x_verdi) -> y verdi
                 # Konvertere
-            imageIterator += 1
         
         if saveFilmSequence == False:
             plt.rcParams['figure.subplot.bottom'] = 0
@@ -334,7 +333,7 @@ for waveLength in lambdaArray:
             plt.style.use('default')
             # funksjon(x_verdi) -> y verdi
             # Konvertere
-        
+
         if deleteFilmSequence:
             for i in range(filmSequenceNumImages + 1):
                 strFile = setStringFile(4, str(i))
