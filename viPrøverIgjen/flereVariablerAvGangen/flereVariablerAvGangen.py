@@ -264,12 +264,12 @@ for waveLength in lambdaArray:
 
         # FIGURE 4
 
-        yArray = yValues(filmSequenceNumImages)
-        iterator = 1
-        xListe = []
-        yListe = []
 
         if saveFilmSequence:
+            yArray = yValues(filmSequenceNumImages)
+            iterator = 1
+            xListe = []
+            yListe = []
 
             for y in yArray:
                 num = np.random.rand(y)

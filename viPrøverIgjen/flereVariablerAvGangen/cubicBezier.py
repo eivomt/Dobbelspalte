@@ -98,6 +98,6 @@ def yValues(numPoints):
 
 # printTValues(numPoints)
 # print(yValues(numPoints))
-plotCubicBezier(p0,p1,p2,p3,numPoints)
+# plotCubicBezier(p0,p1,p2,p3,numPoints)
 
 
