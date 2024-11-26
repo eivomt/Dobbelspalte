@@ -8,92 +8,6 @@ let circles = []
 // let sD, sW, sCy1, sCy2
 // let bH
 
-<<<<<<< Updated upstream
-=======
-// let speed
-let waveLength
-
-let L
-
-let lambdaSlider = document.getElementById('lambda')
-let lOutput = document.getElementById('lambdaText')
-// lOutput.innerHTML = lambdaSlider.value
-
-let lambdaRadio1 = document.getElementById('lambda1')
-let lambdaRadio2 = document.getElementById('lambda2')
-let lambdaRadio3 = document.getElementById('lambda3')
-
-let figImg = document.getElementById('figImg')
-
-let figOnClick = (ev) => {
-  ev.preventDefault()
-  let currentActive = document.querySelectorAll('.fig.active')
-  currentActive[0].classList.remove('active')
-  ev.target.classList.add('active')
-  setImgSrc()
-  // figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/1/fig" + ev.target.dataset.value +"/fig.png" 
-}
-
-let lambdaOnClick = (ev) => {
-  ev.preventDefault()
-  let currentActive = document.querySelectorAll('.lambda.active')
-  currentActive[0].classList.remove('active')
-  ev.target.classList.add('active')
-  waveLength = ev.target.dataset.value
-  setImgSrc()
-  doTheThing()
-}
-
-let dOnClick = (ev) => {
-  ev.preventDefault()
-  let currentActive = document.querySelectorAll('.d.active')
-  currentActive[0].classList.remove('active')
-  ev.target.classList.add('active')
-  // waveLength = ev.target.dataset.value
-  updateVariables(ev.target.dataset.value)
-  setImgSrc()
-  doTheThing()
-}
-
-
-let updateVariables = (d) => {
-  console.log('slitDistance: ' + slitDistance)
-  console.log('barrierHeight: ' + barrierHeight)
-  console.log('slitCenterY1: ' + slitCenterY1)
-  console.log('slitCenterY2: ' + slitCenterY2)
-  console.log('slitHeight: ' + slitHeight)
-  console.log('windowHeight: ' + windowHeight)
-  console.log('----------------------------------------')
-  
-  slitDistance = parseInt(d)
-  console.log(barrierHeight)
-
-  barrierHeight = slitDistance + slitHeight
-  console.log(barrierHeight)
-
-  barrierHeight = barrierHeight / 2
-  console.log(barrierHeight)
-
-  barrierHeight = windowHeight / 2 - barrierHeight
-  console.log(barrierHeight)
-  // barrierHeight = Math.floor(windowHeight - (slitDistance + slitHeight)/2)
-  slitCenterY1 = barrierHeight + slitHeight/2
-  slitCenterY2 = slitCenterY1 + slitDistance
-
-  console.log('----------------------------------------')
-
-  console.log('Y center = ' + CenterY)
-
-  console.log('----------------------------------------')
-
-  console.log('slitDistance: ' + slitDistance)
-  console.log('barrierHeight: ' + barrierHeight)
-  console.log('slitCenterY1: ' + slitCenterY1)
-  console.log('slitCenterY2: ' + slitCenterY2)
-  console.log('slitHeight: ' + slitHeight)
-  console.log('windowHeight: ' + windowHeight)
-}
->>>>>>> Stashed changes
 
 let setImgSrc = () => {
   // let activeList = document.querySelectorAll('.active:not(.fig)')
@@ -157,11 +71,6 @@ for (let i = 0; i<dRadioList.length; i++) {
 
 
 function setup() {
-<<<<<<< Updated upstream
-  
-  createCanvas(windowWidth, windowHeight);
-  background(225)
-=======
   frameRate = 34
   sketchWidth = (windowWidth/100)*63
   CenterX = (sketchWidth / 63) * 20
@@ -182,7 +91,6 @@ function setup() {
 
   createCanvas(sketchWidth, windowHeight);
   background(25)
->>>>>>> Stashed changes
 
   Offset = 200
   ContainerX1 = Offset
@@ -191,7 +99,6 @@ function setup() {
   containerHeight = windowHeight-(Offset *2)
   // stroke(255)
   // drawMaxima(4)
-<<<<<<< Updated upstream
   // stroke(125)
   // createGrid()
   // stroke(50)
@@ -199,12 +106,10 @@ function setup() {
   // scale(-1,1)
   noStroke()
   rect(Offset,Offset, containerWidth, containerHeight)
-=======
   stroke(125)
   createGrid()
   stroke(50)
   drawBarrier()
->>>>>>> Stashed changes
 }
 
 function draw() {
@@ -214,19 +119,6 @@ function draw() {
   drawMeasurement()
 }
 
-<<<<<<< Updated upstream
-function drawMeasurement() {
-  let diameter = 20
-  let randomX = Math.random() * (windowWidth - 2*Offset) + Offset
-  let randomY = Math.random() * (windowHeight -2*Offset) + Offset
-
-  circle(randomX,randomY, diameter)
-  // let circle = circle(randomX,randomY, diameter)
-  // circles.push(circle)
-}
-  
-  
-=======
 
 function doTheThing() {
   background(25)
@@ -295,4 +187,3 @@ function createCircularWave() {
 
 const mapNumRange = (num, inMin, inMax, outMin, outMax) =>
   ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
->>>>>>> Stashed changes
