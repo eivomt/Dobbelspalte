@@ -15,8 +15,13 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from scipy.interpolate import CubicSpline
 import os
+from cubicBezier import yValues
 
 plt.ioff()
+
+saveFilmSequence = False
+deleteFilmSequence = True
+filmSequenceNumImages = 240
 
 # Inputs
 wl = 0.5
@@ -33,8 +38,8 @@ imageIterator = 1
 
 fig_dpi = 300
 
-def setStringFile(figNum):
-    return './' + str(imageIterator) + '/fig' + str(figNum) + '/' + 'fig.png'
+def setStringFile(figNum, iterator=""):
+    return './' + str(imageIterator) + '/fig' + str(figNum) + '/' + 'fig'+ iterator +'.png'
 
 
 # Funksjon for Intensitetensitet
@@ -259,31 +264,81 @@ for waveLength in lambdaArray:
 
         # FIGURE 4
 
+        yArray = yValues(filmSequenceNumImages)
+        iterator = 1
+        xListe = []
+        yListe = []
+
+        if saveFilmSequence:
+
+            for y in yArray:
+                num = np.random.rand(y)
+
+                xVerdier = np.random.rand(y)
+                for xVerdi in xVerdier:
+                    xListe.append(xVerdi)
+                
+
+                yVerdier = Konvertere(num)
+                for yVerdi in yVerdier:
+                    yListe.append(yVerdi)
 
 
+                plt.rcParams['figure.subplot.bottom'] = 0
+                plt.rcParams['figure.subplot.top'] = 1
+                plt.rcParams['figure.subplot.left'] = 0
+                plt.rcParams['figure.subplot.right'] = 1
+                fig = plt.figure(4, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+                plt.style.use('dark_background')
+                # plt.grid(visible = False)
+                # x skal her være et tilfeldig tall
+                plt.plot(xListe, yListe, 'w.', markersize=1)
+                # plt.show()
+                strFile = setStringFile(4, str(iterator))
+                if os.path.isfile(strFile):
+                    os.remove(strFile)
+                plt.axis('off')
+                plt.xticks([])  
+                plt.yticks([]) 
+                plt.savefig(strFile)
+                plt.clf()
+                plt.close(fig)
 
+                plt.style.use('default')
+                iterator += 1
+                # funksjon(x_verdi) -> y verdi
+                # Konvertere
+            imageIterator += 1
+        
+        if saveFilmSequence == False:
+            plt.rcParams['figure.subplot.bottom'] = 0
+            plt.rcParams['figure.subplot.top'] = 1
+            plt.rcParams['figure.subplot.left'] = 0
+            plt.rcParams['figure.subplot.right'] = 1
+            fig = plt.figure(4, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+            plt.style.use('dark_background')
+            # plt.grid(visible = False)
+            # x skal her være et tilfeldig tall
+            plt.plot(np.random.rand(5000), Konvertere(num), 'w.', markersize=1)
+            # plt.show()
+            strFile = setStringFile(4)
+            if os.path.isfile(strFile):
+                os.remove(strFile)
+            plt.axis('off')
+            plt.xticks([])  
+            plt.yticks([]) 
+            plt.savefig(strFile)
+            plt.clf()
+            plt.close(fig)
 
-        plt.rcParams['figure.subplot.bottom'] = 0
-        plt.rcParams['figure.subplot.top'] = 1
-        plt.rcParams['figure.subplot.left'] = 0
-        plt.rcParams['figure.subplot.right'] = 1
-        fig = plt.figure(4, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
-        plt.style.use('dark_background')
-        # plt.grid(visible = False)
-        # x skal her være et tilfeldig tall
-        plt.plot(np.random.rand(5000), Konvertere(num), 'w.', markersize=1)
-        # plt.show()
-        strFile = setStringFile(4)
-        if os.path.isfile(strFile):
-            os.remove(strFile)
-        plt.axis('off')
-        plt.xticks([])  
-        plt.yticks([]) 
-        plt.savefig(strFile)
-        plt.clf()
-        plt.close(fig)
+            plt.style.use('default')
+            # funksjon(x_verdi) -> y verdi
+            # Konvertere
+            imageIterator += 1
+        
+        if deleteFilmSequence:
+            for i in range(filmSequenceNumImages + 1):
+                strFile = setStringFile(4, str(i))
+                if os.path.isfile(strFile):
+                    os.remove(strFile)
 
-        plt.style.use('default')
-        # funksjon(x_verdi) -> y verdi
-        # Konvertere
-        imageIterator += 1
