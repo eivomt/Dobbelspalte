@@ -8,6 +8,36 @@ let circles = []
 // let sD, sW, sCy1, sCy2
 // let bH
 
+let updateVariables = (d) => {
+  console.log('slitDistance: ' + slitDistance)
+  console.log('barrierHeight: ' + barrierHeight)
+  console.log('slitCenterY1: ' + slitCenterY1)
+  console.log('slitCenterY2: ' + slitCenterY2)
+  console.log('slitHeight: ' + slitHeight)
+  console.log('windowHeight: ' + windowHeight)
+  console.log('----------------------------------------')
+  
+  slitDistance = parseInt(d)
+  console.log(barrierHeight)
+  barrierHeight = slitDistance + slitHeight
+  console.log(barrierHeight)
+  barrierHeight = barrierHeight / 2
+  console.log(barrierHeight)
+  barrierHeight = windowHeight / 2 - barrierHeight
+  console.log(barrierHeight)
+  // barrierHeight = Math.floor(windowHeight - (slitDistance + slitHeight)/2)
+  slitCenterY1 = barrierHeight + slitHeight/2
+  slitCenterY2 = slitCenterY1 + slitDistance
+  console.log('----------------------------------------')
+  console.log('Y center = ' + CenterY)
+  console.log('----------------------------------------')
+  console.log('slitDistance: ' + slitDistance)
+  console.log('barrierHeight: ' + barrierHeight)
+  console.log('slitCenterY1: ' + slitCenterY1)
+  console.log('slitCenterY2: ' + slitCenterY2)
+  console.log('slitHeight: ' + slitHeight)
+  console.log('windowHeight: ' + windowHeight)
+}
 
 let setImgSrc = () => {
   // let activeList = document.querySelectorAll('.active:not(.fig)')
@@ -52,6 +82,41 @@ let setImgSrc = () => {
   }
 }
 
+
+let figOnClick = (ev) => {
+  ev.preventDefault()
+  let currentActive = document.querySelectorAll('.fig.active')
+  currentActive[0].classList.remove('active')
+  ev.target.classList.add('active')
+  setImgSrc()
+  // figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/1/fig" + ev.target.dataset.value +"/fig.png" 
+}
+
+let dOnClick = (ev) => {
+  ev.preventDefault()
+  let currentActive = document.querySelectorAll('.d.active')
+  currentActive[0].classList.remove('active')
+  ev.target.classList.add('active')
+  // waveLength = ev.target.dataset.value
+  updateVariables(ev.target.dataset.value)
+  setImgSrc()
+  doTheThing()
+}
+
+let lambdaOnClick = (ev) => {
+  ev.preventDefault()
+  let currentActive = document.querySelectorAll('.lambda.active')
+  currentActive[0].classList.remove('active')
+  ev.target.classList.add('active')
+  waveLength = ev.target.dataset.value
+  setImgSrc()
+  doTheThing()
+}
+
+let lambdaRadio1 = document.getElementById('lambda1')
+let lambdaRadio2 = document.getElementById('lambda2')
+let lambdaRadio3 = document.getElementById('lambda3')
+
 lambdaRadio1.addEventListener("click", lambdaOnClick)
 lambdaRadio2.addEventListener("click", lambdaOnClick)
 lambdaRadio3.addEventListener("click", lambdaOnClick)
@@ -67,7 +132,6 @@ let dRadioList = document.querySelectorAll('.d')
 for (let i = 0; i<dRadioList.length; i++) {
   dRadioList[i].addEventListener("click", dOnClick)
 } 
-
 
 
 function setup() {
@@ -105,7 +169,7 @@ function setup() {
   // drawBarrier()
   // scale(-1,1)
   noStroke()
-  rect(Offset,Offset, containerWidth, containerHeight)
+  // rect(Offset,Offset, containerWidth, containerHeight)
   stroke(125)
   createGrid()
   stroke(50)
@@ -116,7 +180,7 @@ function draw() {
   stroke(25)
   strokeWeight(2)
   noFill()
-  drawMeasurement()
+  // drawMeasurement()
 }
 
 
