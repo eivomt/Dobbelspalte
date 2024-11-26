@@ -271,7 +271,7 @@ for waveLength in lambdaArray:
         plt.style.use('dark_background')
         # plt.grid(visible = False)
         # x skal her være et tilfeldig tall
-        plt.plot(np.random.rand(5000), Konvertere(num), 'w.')
+        plt.plot(np.random.rand(5000), Konvertere(num), 'w.', markersize=1)
         # plt.show()
         strFile = setStringFile(4)
         if os.path.isfile(strFile):
