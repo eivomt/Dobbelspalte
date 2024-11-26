@@ -1,12 +1,15 @@
 
-let CenterX, CenterY
-let allLines = []
-let allCircles = []
+let Offset
+let containerX1, containerWidth, containerY1, containerHeight
+let circles = []
+// let allLines = []
+// let allCircles = []
 
-let slitDistance, slitHeight, slitCenterY1, slitCenterY2
-let barrierHeight
-let maxRadius
+// let sD, sW, sCy1, sCy2
+// let bH
 
+<<<<<<< Updated upstream
+=======
 // let speed
 let waveLength
 
@@ -90,6 +93,7 @@ let updateVariables = (d) => {
   console.log('slitHeight: ' + slitHeight)
   console.log('windowHeight: ' + windowHeight)
 }
+>>>>>>> Stashed changes
 
 let setImgSrc = () => {
   // let activeList = document.querySelectorAll('.active:not(.fig)')
@@ -153,6 +157,11 @@ for (let i = 0; i<dRadioList.length; i++) {
 
 
 function setup() {
+<<<<<<< Updated upstream
+  
+  createCanvas(windowWidth, windowHeight);
+  background(225)
+=======
   frameRate = 34
   sketchWidth = (windowWidth/100)*63
   CenterX = (sketchWidth / 63) * 20
@@ -173,6 +182,7 @@ function setup() {
 
   createCanvas(sketchWidth, windowHeight);
   background(25)
+>>>>>>> Stashed changes
 
   Offset = 200
   ContainerX1 = Offset
@@ -181,15 +191,42 @@ function setup() {
   containerHeight = windowHeight-(Offset *2)
   // stroke(255)
   // drawMaxima(4)
+<<<<<<< Updated upstream
+  // stroke(125)
+  // createGrid()
+  // stroke(50)
+  // drawBarrier()
+  // scale(-1,1)
+  noStroke()
+  rect(Offset,Offset, containerWidth, containerHeight)
+=======
   stroke(125)
   createGrid()
   stroke(50)
   drawBarrier()
+>>>>>>> Stashed changes
 }
 
 function draw() {
+  stroke(25)
+  strokeWeight(2)
+  noFill()
+  drawMeasurement()
 }
 
+<<<<<<< Updated upstream
+function drawMeasurement() {
+  let diameter = 20
+  let randomX = Math.random() * (windowWidth - 2*Offset) + Offset
+  let randomY = Math.random() * (windowHeight -2*Offset) + Offset
+
+  circle(randomX,randomY, diameter)
+  // let circle = circle(randomX,randomY, diameter)
+  // circles.push(circle)
+}
+  
+  
+=======
 
 function doTheThing() {
   background(25)
@@ -255,5 +292,7 @@ function createCircularWave() {
   newCircularWave.show()
   allCircles.push(newCircularWave)
 }
-  
-  
+
+const mapNumRange = (num, inMin, inMax, outMin, outMax) =>
+  ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+>>>>>>> Stashed changes
