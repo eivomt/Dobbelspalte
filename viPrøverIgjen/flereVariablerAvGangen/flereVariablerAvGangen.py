@@ -334,11 +334,12 @@ for waveLength in lambdaArray:
             plt.style.use('default')
             # funksjon(x_verdi) -> y verdi
             # Konvertere
-            imageIterator += 1
         
         if deleteFilmSequence:
             for i in range(filmSequenceNumImages + 1):
                 strFile = setStringFile(4, str(i))
                 if os.path.isfile(strFile):
                     os.remove(strFile)
+        
+        imageIterator += 1
 
