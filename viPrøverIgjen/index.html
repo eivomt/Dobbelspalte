@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+    <div class="screen">
+        <div class="img-container" id="container">
+            <img id="img" src="" alt="">
+        </div>
+
+        <div class="buttons">
+            <div class="imageButtons">
+                <h3>Image</h3>
+                <button onclick="nxtImg()">nxt</button>
+                <button onclick="bckImg()">bck</button>
+            </div>
+            <div class="figureButtons">
+                <h3>Figure</h3>
+                <button onclick="nxtFig()">nxt</button>
+                <button onclick="bckFig()">bck</button>
+            </div>
+        </div>
+    </div>
+
+    <form action="/action_page.php">
+        <p>Please select lambda etc:</p>
+        <input type="radio" id="html" name="lambdaRadio" value="HTML">
+        <label for="html">1</label><br>
+        <input type="radio" id="css" name="lambdaRadio" value="CSS">
+        <label for="css">2</label><br>
+        <input type="radio" id="javascript" name="lambdaRadio" value="JavaScript">
+        <label for="javascript">5</label>
+      
+        <br>  
+      
+        <p>Please select distance d:</p>
+        <input type="radio" id="d1" name="d" value="30">
+        <label for="d1">5</label><br>
+        <input type="radio" id="d2" name="d" value="60">
+        <label for="d2">10</label><br>  
+        <input type="radio" id="d3" name="d" value="100">
+        <label for="d3">20</label><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    
+    
+</body>
+<script>
+
+    let container = document.getElementById("container")
+    let img = document.getElementById("img")
+    
+    console.log(container)
+
+    let imageIterator = 0
+    let figureIterator = 1
+
+    let setSrc = () => {
+        img.src = './flereVariablerAvGangen/'+ imageIterator +'/fig'+ figureIterator +'/fig.png'
+    }
+
+    let nxtImg = () => {
+        imageIterator++
+        setSrc()
+    }
+
+    let bckImg = () => {
+        imageIterator--
+        setSrc()
+    }
+
+    let nxtFig = () => {
+        figureIterator++
+        setSrc()
+    }
+    let bckFig = () => {
+        figureIterator--
+        setSrc()
+    }
+
+    let submit = () => {
+        console.log()
+    }
+
+
+</script>
+</html>

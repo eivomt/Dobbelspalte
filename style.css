@@ -3,6 +3,95 @@ html, body {
   padding: 0;
 }
 
+body {
+  background-color: rgba(25,25,25);
+}
+
 canvas {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+
 }
+
+.img-container {
+  position: absolute;
+  left: 63%;
+  top: 0;
+  width: 37vw;
+  height: 100vh;
+  background-color: rgba(150,150,150);
+}
+
+.box {
+  z-index: 2;
+  position: relative;
+  /* width: 20rem; */
+  display: flex;
+  flex-direction: column;
+  /* display: none; */
+
+  & p {
+    position: fixed;
+    left: 1rem;
+    background-color: rgba(255,255,255,.85);
+    width: 4rem;
+    height: 2rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .25rem;
+  }
+}
+
+.container-container {
+  height: 100vh;
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px;
+}
+
+.button-container-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-container {
+  height: 235px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255,255,255,.85);
+  z-index: 2;
+  padding: 35px;
+  border-radius: 1rem;
+}
+
+.radio {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgba(230,230,230);
+  cursor: pointer;
+  transition: all .3s ease-out;
+  margin: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio:hover {
+  background-color: rgba(245,245,245);
+}
+
+.active {
+  background-color: aquamarine !important;
+}
+
