@@ -293,6 +293,8 @@ for waveLength in lambdaArray:
                 # plt.grid(visible = False)
                 # x skal her være et tilfeldig tall
                 plt.plot(xListe, yListe, 'w.', markersize=1)
+                plt.xlim(0, 1)
+                plt.ylim(-y_max, y_max)
                 # plt.show()
                 strFile = setStringFile(4, str(iterator))
                 if os.path.isfile(strFile):
