@@ -2,6 +2,8 @@
 let Offset
 let containerX1, containerWidth, containerY1, containerHeight
 let circles = []
+let film = document.getElementById("film")
+let filmSrc = document.getElementById("filmsrc")
 // let allLines = []
 // let allCircles = []
 
@@ -45,37 +47,130 @@ let setImgSrc = () => {
   let lambdaValue = activeList[0]
   let dValue = activeList[1]
   let figValue = activeList[2]
-  console.log(lambdaValue.dataset.num + dValue.dataset.num)
+
+
+
+
 
   let switchExpression = lambdaValue.dataset.num + dValue.dataset.num
+  console.log(switchExpression + " figValue:" + figValue.dataset.value)
 
   switch (switchExpression) {
     case '11':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 1 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/01.mp4"
+        film.load()
+        film.play()
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 1 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '12':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 2 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/02.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 2 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '13':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 3 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/03.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 3 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '21':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 4 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/04.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 4 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '22':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 5 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/05.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 5 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '23':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 6 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/06.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 6 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '31':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 7 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/07.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 7 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '32':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 8 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/08.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 8 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break 
     case '33':
-      figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 9 + "/fig" + figValue.dataset.value + "/fig.png"
+      if(figValue.dataset.value == "4") {
+        figImg.style.display = "none"
+        film.style.display = "block"
+        filmSrc.src = "./mov/09.mp4"
+        film.load()
+        film.play()
+
+      }else {
+        figImg.style.display = "block"
+        figImg.src = "./viPrøverIgjen/flereVariablerAvGangen/" + 9 + "/fig" + figValue.dataset.value + "/fig.png"
+      }
       break
     default:
       console.log('Sorry, we are out of expression')

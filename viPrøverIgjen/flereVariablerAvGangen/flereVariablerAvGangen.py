@@ -296,7 +296,7 @@ for waveLength in lambdaArray:
                 plt.xlim(0, 1)
                 plt.ylim(-y_max, y_max)
                 # plt.show()
-                strFile = setStringFile(4, str(iterator))
+                strFile = setStringFile(4, "{:04d}".format(iterator))
                 if os.path.isfile(strFile):
                     os.remove(strFile)
                 plt.axis('off')
@@ -337,10 +337,15 @@ for waveLength in lambdaArray:
             # Konvertere
 
         if deleteFilmSequence:
+            # for i in range(filmSequenceNumImages + 1):
+            #     strFile = setStringFile(4, str(i))
+            #     if os.path.isfile(strFile):
+            #         os.remove(strFile)
             for i in range(filmSequenceNumImages + 1):
-                strFile = setStringFile(4, str(i))
+                strFile = setStringFile(4, "{:04d}".format(i))
                 if os.path.isfile(strFile):
                     os.remove(strFile)
+        
         
         imageIterator += 1
 
