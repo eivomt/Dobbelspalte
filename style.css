@@ -48,7 +48,7 @@ canvas {
 
 .container-container {
   height: 100vh;
-  width: 20vw;
+  width: 15vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,3 +95,13 @@ canvas {
   background-color: aquamarine !important;
 }
 
+#film {
+  display: none;
+  width: 888px;
+  height: 1198px;
+}
+
+#figImg {
+  width: 888px;
+  height: 1198px;
+}
