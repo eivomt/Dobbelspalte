@@ -1,0 +1,366 @@
+"""Denne koden finn Intensitetsfordelinga på skjermen
+bak ei dobbeltspalte.
+Inputs er 
+wl - bølgelendga
+d - avstanden mellom spaltene (midt til midt)
+L - avstanden til skjermen
+h_max - kor langt skjermen strekker seg (i kvar retning)
+
+I tillegg er der nokre numeriske parametrar.
+"""
+
+# Bibliotek
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+from scipy.interpolate import CubicSpline
+import os
+import csv
+from cubicBezier import yValues
+
+plt.ioff()
+
+saveFilmSequence = False
+saveSingular = False
+deleteFilmSequence = True
+filmSequenceNumImages = 240
+saveCSV = False
+
+# Inputs
+wl = 0.5
+d = 100
+L = 1548
+
+# Skjerm-høgda
+y_max = 972
+
+# LArray = [1548, 1161, 774, 387]
+lambdaArray = [10, 20, 50]
+dArray = [50, 100, 200]
+
+imageIterator = 1
+
+fig_dpi = 300
+
+def setStringFile(figNum, iterator=""):
+    return './' + str(imageIterator) + '/fig' + str(figNum) + '/' + 'fig'+ iterator +'.png'
+
+
+# Funksjon for Intensitet
+def Intensitet(y, t):
+    r1 = np.sqrt(L**2+(y-d/2)**2)
+    E1 = np.sin(k*(r1-c*t))/r1
+    # E1 = np.sin(k*(r1-c*t))
+    r2 = np.sqrt(L**2+(y+d/2)**2)
+    E2 = np.sin(k*(r2-c*t))/r2
+    # E2 = np.sin(k*(r2-c*t))
+    return (E1+E2)**2
+
+
+
+
+for waveLength in lambdaArray:
+    for distance in dArray:
+        wl = waveLength
+        d = distance
+        ######### end of inputs ###################
+
+        # Bølgefart
+        c = 1
+        # Bølgetal
+        k = 2*np.pi/wl
+        # Periode
+        Tperiod = wl/c
+        # Tperiod = 100
+
+        # Gridpunkt - i h og t
+        y_pkt = 972
+        t_pkt= 666
+        # Antal maksima å plotte
+        n_max = int(np.floor(d*y_max/(wl*L)))
+
+        # Presisjon i Newtons metode for å bestemme maksima
+        pres = 1e-4
+
+        #
+        # Lagar Intensitetsfordeling på skjerm som funk. av høgde (h) og tid (t)
+        #
+        y = np.linspace(-y_max, y_max, y_pkt)
+        y_step = y[1]- y[0]
+        t = np.linspace(0, Tperiod, t_pkt)
+        Y, T = np.meshgrid(y, t)
+
+        # Matrise med Intensitet på skjerm
+        Imat = Intensitet(Y, T)
+        # T = T + k*T
+        # 2*T = tilbake til start
+        # Imat = Intensitet(Y, T)
+
+
+
+
+        # FIGURE 1
+
+
+
+
+
+        # Plottar funksjonen som fargekart
+        plt.rcParams['figure.subplot.bottom'] = 0
+        plt.rcParams['figure.subplot.top'] = 1
+        plt.rcParams['figure.subplot.left'] = 0
+        plt.rcParams['figure.subplot.right'] = 1
+        fig = plt.figure(1, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+        plt.pcolormesh(T.T, Y.T, np.fliplr(Imat.T), shading = 'auto', 
+                    cmap = cm.gray)
+        plt.axis('off')
+        plt.xticks([])  
+        plt.yticks([])
+
+        # plt.colorbar()
+        strFile = setStringFile(1)
+        if os.path.isfile(strFile):
+            os.remove(strFile)
+        plt.savefig(strFile, transparent=True)
+        plt.clf()
+        plt.close(fig)
+
+        # plt.show()
+
+
+        #
+        # Bestemmer posisjonen for maksimum
+        #
+        # Funksjon som skal vere null (forskjell i avstand lik eit heiltal wl)
+        def maks_funk(y, n):
+            l1 = np.sqrt(L**2 + (y-d/2)**2)
+            l2 = np.sqrt(L**2 + (y+d/2)**2)
+            return np.abs(l1-l2)-n*wl
+
+        # Den deriverte
+        dy = 1e-3
+        def deriv_funk(y, n):
+            return (maks_funk(y+dy, n) - maks_funk(y-dy, n))/(2*dy)
+
+        # Estimerar alle posisjonane med Newtons metode
+        max_vektor = np.zeros(n_max)
+        for n in range(1, n_max):
+            # Kvalifisert start-gjetning
+            yline = n*L*wl/d
+            y_old = 10
+            while np.abs(yline-y_old) > pres:
+                y_old = yline
+                # Newtons metode
+                yline = yline - maks_funk(yline, n)/deriv_funk(yline, n)
+            # Lagrar resultat i vektor
+            max_vektor[n] = yline
+            
+
+        # Intensitetegrerar ut tida og plottar Intensitetensiteten
+        Intensitet_vektor = np.trapz(Imat.T, t)
+
+        # Plottar Intensiteten som søyle med farge
+        y_double = np.zeros((2, y_pkt))     
+        I_double = np.zeros((2, y_pkt))    
+        # To rekker med h-verdiar
+        y_double[0, :] = y
+        y_double[1, :] = y
+        # To rekker med Intensitet
+        I_double[0, :] = Intensitet_vektor
+        I_double[1, :] = Intensitet_vektor
+
+
+
+
+
+        # FIGURE 2
+
+
+
+
+
+        # Plottet - som figur 1, men utan t
+        plt.rcParams['figure.subplot.bottom'] = 0
+        plt.rcParams['figure.subplot.top'] = 1
+        plt.rcParams['figure.subplot.left'] = 0
+        plt.rcParams['figure.subplot.right'] = 1
+        fig = plt.figure(2, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+
+        plt.pcolormesh([0, 1], y_double.T, I_double.T, shading = 'auto', 
+                    cmap = cm.gray)
+        
+        plt.axis('off')
+        plt.xticks([])  
+        plt.yticks([]) 
+        strFile = setStringFile(2)
+        if os.path.isfile(strFile):
+            os.remove(strFile)
+        plt.savefig(strFile, transparent=True)
+        plt.clf()
+        plt.close(fig)
+        # plt.show()
+            
+        #
+        # Lagar akkumulativ fordelingsfunksjon.
+        #
+        # Normering - totalt sannsyn lik 1
+        itetegral_Intensitet = np.trapz(Intensitet_vektor, x=y)
+        ProbDist = Intensitet_vektor/itetegral_Intensitet
+        # Integrerar sannsynsfordeling - for � finne den akkumulative
+        Akkumulative_dist = np.cumsum(ProbDist)*y_step
+
+        # Funksjon som gir posisjon for tilfeldig tal
+        Konvertere = CubicSpline(Akkumulative_dist, y)
+        # Plottar konverteringsfunksjonen
+        # plt.plot(Akkumulative_dist, y, 'g:')
+
+
+
+
+
+        # FIGURE 3
+
+
+
+
+
+
+        plt.rcParams['figure.subplot.bottom'] = 0
+        plt.rcParams['figure.subplot.top'] = 1
+        plt.rcParams['figure.subplot.left'] = 0
+        plt.rcParams['figure.subplot.right'] = 1
+        fig = plt.figure(3, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+
+        draw = np.linspace(0, 1, 500)
+        plt.plot(draw, Konvertere(draw), 'r--')
+
+        plt.grid(visible = True)
+        plt.axis('off')
+        plt.xticks([])  
+        plt.yticks([])
+        strFile = setStringFile(3)
+        if os.path.isfile(strFile):
+            os.remove(strFile)
+        plt.savefig(strFile, transparent=True)
+        plt.clf()
+        plt.close(fig)
+        # plt.show()
+
+        num = np.random.rand(5000)
+
+
+
+
+        # FIGURE 4
+
+
+        if saveFilmSequence:
+            yArray = yValues(filmSequenceNumImages)
+            iterator = 1
+            xListe = []
+            yListe = []
+
+            for y in yArray:
+                num = np.random.rand(y)
+
+                xVerdier = np.random.rand(y)
+                for xVerdi in xVerdier:
+                    xListe.append(xVerdi)
+                
+
+                yVerdier = Konvertere(num)
+                for yVerdi in yVerdier:
+                    yListe.append(yVerdi)
+
+
+                plt.rcParams['figure.subplot.bottom'] = 0
+                plt.rcParams['figure.subplot.top'] = 1
+                plt.rcParams['figure.subplot.left'] = 0
+                plt.rcParams['figure.subplot.right'] = 1
+                fig = plt.figure(4, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+                plt.style.use('dark_background')
+                # x skal her være et tilfeldig tall
+                plt.plot(xListe, yListe, 'w.', markersize=1)
+                plt.xlim(0, 1)
+                plt.ylim(-y_max, y_max)
+                strFile = setStringFile(4, "{:04d}".format(iterator))
+                if os.path.isfile(strFile):
+                    os.remove(strFile)
+                plt.axis('off')
+                plt.xticks([])  
+                plt.yticks([]) 
+                plt.savefig(strFile)
+                plt.clf()
+                plt.close(fig)
+
+                plt.style.use('default')
+                iterator += 1
+        
+        if saveSingular:
+            plt.rcParams['figure.subplot.bottom'] = 0
+            plt.rcParams['figure.subplot.top'] = 1
+            plt.rcParams['figure.subplot.left'] = 0
+            plt.rcParams['figure.subplot.right'] = 1
+            fig = plt.figure(4, figsize=(666/fig_dpi, 972.5/fig_dpi), dpi=fig_dpi)
+            plt.style.use('dark_background')
+            # x skal her være et tilfeldig tall
+            plt.plot(np.random.rand(5000), Konvertere(num), 'w.', markersize=1)
+            strFile = setStringFile(4)
+            if os.path.isfile(strFile):
+                os.remove(strFile)
+            plt.axis('off')
+            plt.xticks([])  
+            plt.yticks([]) 
+            plt.savefig(strFile)
+            plt.clf()
+            plt.close(fig)
+
+            plt.style.use('default')
+
+        if deleteFilmSequence:
+            for i in range(filmSequenceNumImages + 1):
+                strFile = setStringFile(4, "{:04d}".format(i))
+                if os.path.isfile(strFile):
+                    os.remove(strFile)
+        
+        if saveCSV:
+            yArray = yValues(filmSequenceNumImages)
+            iterator = 1
+            xListe = []
+            yListe = []
+
+            xYListe = []
+
+            for y in yArray:
+                num = np.random.rand(y)
+
+                xVerdier = np.random.rand(y)
+                for xVerdi in xVerdier:
+                    xListe.append(xVerdi)
+
+                yVerdier = Konvertere(num)
+                for yVerdi in yVerdier:
+                    yListe.append(yVerdi)
+
+            for i in np.arange(0,len(xListe)):
+                xY = []
+                xY.append(str(xListe[i]))
+                xY.append(str(yListe[i]))
+                xYListe.append(xY)
+
+
+            # skriv til csv fil, xListe, yListe
+            csvPath = f'./csv/csv{"{:02d}".format(imageIterator)}/measurements.csv'
+
+            if os.path.isfile(csvPath):
+                os.remove(csvPath)
+               
+            with open(csvPath, 'w') as file:
+                writer = csv.writer(file)
+                fields = ['x','y']
+
+                writer.writerow(fields)
+                writer.writerows(xYListe)
+        
+        imageIterator += 1
+

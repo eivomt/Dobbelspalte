@@ -7,7 +7,12 @@
     <title>Sketch</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js" integrity="sha512-265OeMthg1wxVfU0mpNMtNrz2E+OKxJ9CNbmv+oYCxNO93Lgmxq9pwqubnQqkSJgzvsqLju8Mr106tcMlwsZxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-csv@1.0.40/src/jquery.csv.min.js"></script>
+
     <!-- <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script> -->
   </head>
@@ -45,20 +50,28 @@
             <div class="radio fig active" id="fig1" data-value="1">1</div>
             <div class="radio fig" id="fig2" data-value="2">2</div>
             <!-- <div class="radio fig" id="fig3" data-value="3">3</div> -->
-            <div class="radio fig" id="fig4" data-value="4">4</div>
+            <div class="radio fig" id="fig4" data-value="4">3</div>
           </div>
         </div>
       </div>
     </div>
 
+
     <div class="img-container">
-      <img src="./viPrøverIgjen/flereVariablerAvGangen/1/fig1/fig.png" alt="" id="figImg">
-      <video id="film" width="666" height="972" controls autoplay>
+      <img src="./figurer/1/fig1/fig.png" alt="" id="figImg">
+      <video id="film" width="666" height="972" controls autoplay loop>
         <source src="mov/01.mp4" id="filmsrc">
       </video>
     </div>
+
+    <div class="slider-container">
+      <input type="range" min="0" max="7082" id="slider">
+    </div>
   </body>
-  <script src="sketch.js"></script>
+  <script src="waveCrests.js"></script>
+  <script src="measurements.js"></script>
+  <script src="main.js"></script>
   <script src="lineWave.js"></script>
   <script src="circularWave.js"></script>
+  <script src="resizeHandler.js"></script>
 </html>

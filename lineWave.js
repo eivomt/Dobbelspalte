@@ -1,19 +1,20 @@
 class lineWave {
-    constructor(x1,y1, x2, y2) {
+    constructor(x1,y1, x2, y2, p) {
       this.x1 = x1
       this.y1 = y1
       this.x2 = x2
       this.y2 = y2
+      this.p = p
     }
   
     show() {
-        line(this.x1,this.y1,this.x2,this.y2)
+        this.p.line(this.x1,this.y1,this.x2,this.y2)
     }
   
     move() {
       this.x1 += speed
       this.x2 += speed
-      stroke(mapNumRange(this.x1,0, CenterX,125,225))
+      this.p.stroke(mapNumRange(this.x1,0, CenterX,125,225))
     }
   
     checkAlive(id) {

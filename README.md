@@ -1,2 +1,2 @@
-# Dobbelspalte
-# Når bølgene treffes blir de ekstra bølgete
+# Simulering av dobbeltspalteeksperimentet
+# for å kjøre simuleringen, åpne index.html.

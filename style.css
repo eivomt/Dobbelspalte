@@ -5,14 +5,26 @@ html, body {
 
 body {
   background-color: rgba(25,25,25);
+  width: 100vw;
+  height: 100vh;
 }
 
-canvas {
+#sketch1 {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
+}
 
+.sketch1 {
+  width: 63vw;
+  height: 100vh;
+}
+
+#sketch2 {
+  position: absolute;
+  right: 0px;
+  top: 0;
 }
 
 .img-container {
@@ -43,6 +55,7 @@ canvas {
     align-items: center;
     justify-content: center;
     margin: .25rem;
+    /* cursor: pointer; */
   }
 }
 
@@ -53,6 +66,8 @@ canvas {
   justify-content: center;
   align-items: center;
   padding: 35px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .button-container-inner {
@@ -97,11 +112,35 @@ canvas {
 
 #film {
   display: none;
-  width: 888px;
-  height: 1198px;
+  width: 37vw;
+  height: 100vh;
+  object-fit: cover;
+  /* object-position: 50% 50%; */
 }
 
 #figImg {
-  width: 888px;
-  height: 1198px;
+  width: 37vw;
+  height: 100vh;
+  object-fit: cover;
 }
+
+#slider {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
+  width: 37vw;
+  height: 100vh;
+}
+
+#sketch2 {
+  display: none;
+}
+
+.slider-container {
+  display: none;
+}
+/* 
+#film {
+  display: none !important;
+} */
